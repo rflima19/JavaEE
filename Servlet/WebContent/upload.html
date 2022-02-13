@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Upload</title>
+</head>
+<body>
+	<h1>Envie o seu arquivo!!!</h1>
+	
+	<form method="POST" action="uploadServlet" enctype="multipart/form-data">
+		<label>Nome do arquivo:</label> 
+		<input type="text" name="nomeArquivo" maxlength="10"></input> </br>
+		<label>Arquivo:</label> 
+		<input type="file" name="arquivo" value="Selecionar"></input> </br>
+		<input type="submit" value="Enviar"></input>
+	</form>
+</body>
+</html>

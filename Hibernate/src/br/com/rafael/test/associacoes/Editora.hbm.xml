@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="br.com.rafael.test.associacoes">
+	<class name="Editora" table="editora">
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="nome" type="java.lang.String" column="nome" not-null="true" />
+		
+		<!-- 	name="livros" => atributo da classe Editora que possui relacionamento 
+		Many-to-Many com Livro
+				inverse="true" => Entidade Editora é gerenciada por entidade Livro.
+		Apenas quando uma entidade Livro adicionar uma Editora é que a associação será
+		salva no banco de dados.
+				<key column="editora_id" /> => qual a coluna na tabela livro
+		que referencia (chave estrangeira) a entidade Editora
+				<one-to-many class="Livro" /> => define o relacionamento One-to-Many
+		da entidade que está sendo mapeada (Editora) com a entidade Livro
+		-->
+		<set name="livros" inverse="true">
+			<key column="editora_id" />
+			<one-to-many class="Livro" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

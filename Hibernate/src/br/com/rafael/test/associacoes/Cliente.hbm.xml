@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="br.com.rafael.test.associacoes">
+	<class name="Cliente" table="cliente">
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="nome" type="java.lang.String" column="nome" not-null="true" />
+		
+		<!-- 	name="rg" => atributo da classe cliente que possui relacionamento 
+		One-to-One com RG 
+				<one-to-one class="RG" /> => define o relacionamento One-to-One
+		da entidade que está sendo mapeada (Cliente) com a entidade RG 
+		-->
+		<one-to-one name="rg" class="RG" />
+		
+		<!-- 	name="livros" => atributo da classe Cliente que possui relacionamento 
+		Many-to-Many com Livro
+				table="emprestimo" => tabela auxiliar no banco de dados que armazena
+		o relacionamento Many-to-Many entre Cliente e Livro
+				inverse="true" => Entidade Cliente é gerenciada por entidade Livro.
+		Apenas quando uma entidade Livro adicionar um Cliente é que a associação será
+		salva no banco de dados.
+				<key column="cliente_id" /> => qual a coluna na tabela extra 
+		emprestimo que referencia (chave estrangeira) a entidade Cliente
+				<many-to-many column="livro_id" /> => qual a coluna na tabela extra 
+		emprestimo que referencia (chave estrangeira) a entidade Livro
+				<many-to-many class="Livro" /> => define o relacionamento Many-to-Many
+		da entidade que está sendo mapeada (Cliente) com a entidade Livro
+		-->
+		<set name="livros" table="emprestimo" inverse="true">
+			<key column="cliente_id" />
+			<many-to-many column="livro_id" class="Livro" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

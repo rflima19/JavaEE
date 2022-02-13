@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:my="http://mytags.com">
+		
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Tags customizadas para conversores e validadores</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel for="dtNascimento" value="Data de Nascimeto:"/>
+			<h:inputText id="dtNascimento" value="#{form3.dataNascimento}" required="true">
+				<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+				<my:validateDate mensagem="A data de nascimento não pode ser maior que a data atual." />
+			</h:inputText>
+			<h:message for="dtNascimento"/>
+			
+			<h:outputLabel for="endereco" value="Endereço:"/>
+			<h:inputText id="endereco" value="#{form3.endereco}" required="true">
+				<my:convertEndereco separador="," />
+			</h:inputText>
+			<h:message for="endereco"/>
+			
+		</h:panelGrid>
+		<h:commandButton value="Processar" action="#{form3.processar}"/>
+	</h:form>
+</h:body>
+
+</html>

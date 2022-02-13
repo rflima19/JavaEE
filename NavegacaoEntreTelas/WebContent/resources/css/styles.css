@@ -1,0 +1,7 @@
+.linha-horizontal {
+  border-top: 2px solid;/* Adiciona borda na div como ser fosse uma linha.*/
+}
+
+.erro {
+	color: red;
+}

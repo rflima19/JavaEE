@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Dados do Cadastro</title>
+</h:head>
+
+<h:body>
+
+	<h:panelGrid columns="2">
+		<f:facet name="header">
+			Dados do Cadastro
+		</f:facet>
+
+		<h:outputLabel>Nome:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.nome}"></h:outputLabel>
+
+		<h:outputLabel>Email:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.email}"></h:outputLabel>
+
+		<h:outputLabel>Senha1:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.senha1}"></h:outputLabel>
+
+		<h:outputLabel>Senha2:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.senha2}"></h:outputLabel>
+
+		<h:outputLabel>Sexo:</h:outputLabel>
+		<h:outputLabel value="Masculino" rendered="#{cadastro.sexo == 'M'}"></h:outputLabel>
+		<h:outputLabel value="Feminino" rendered="#{cadastro.sexo == 'F'}"></h:outputLabel>
+
+		<h:outputLabel>Deseja receber emails:</h:outputLabel>
+		<h:outputLabel value="Sim" rendered="#{cadastro.receberEmails == true}"></h:outputLabel>
+		<h:outputLabel value="Não" rendered="#{cadastro.receberEmails == false}"></h:outputLabel>
+		
+		<h:outputLabel>Observações:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.observacoes}"></h:outputLabel>
+		
+		<h:outputLabel>Linguagens:</h:outputLabel>
+		<h:outputLabel value="#{cadastro.getLinguagensComoString()}"></h:outputLabel>
+	</h:panelGrid>
+
+</h:body>
+
+</html>

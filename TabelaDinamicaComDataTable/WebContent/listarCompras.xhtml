@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Lista de Compras</title>
+</h:head>
+
+<h:body>
+
+	<h1>Lista de Compras</h1>
+
+	<h:dataTable value="#{listarCompras.listaCompras}" var="li" border="1">
+		<f:facet name="caption">
+			<h:outputText value="Lista de Compras"/>
+		</f:facet>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Descrição"/>
+			</f:facet>
+			<h:outputText value="#{li.descricao}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Quantidade"/>
+			</f:facet>
+			<h:outputText value="#{li.quantidade}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Valor Unitário"/>
+			</f:facet>
+			<h:outputText value="#{li.valorUnitario}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Valor Total"/>
+			</f:facet>
+			<h:outputText value="#{li.valorTotal}"/>
+		</h:column>
+		<f:facet name="footer">
+			<h:outputText rendered="#{listarCompras.size == 0}" value="A lista não possui registros"/>
+			<h:outputText rendered="#{listarCompras.size == 1}" value="A lista possui #{listarCompras.size} registro"/>
+			<h:outputText rendered="#{listarCompras.size > 1}" value="A lista possui #{listarCompras.size} registros"/>
+		</f:facet>
+	</h:dataTable>
+</h:body>
+
+</html>

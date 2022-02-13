@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+	<h:panelGrid columns="7">
+		<h:outputLabel for="data" value="#{label}" />
+		<h:inputText id="data" style="width:30px;" required="true"
+			value="#{dateObj.dia}">
+			<f:convertNumber type="number" />
+			<f:validateLength maximum="2" />
+			<f:validateLongRange minimum="1" maximum="31"/>
+		</h:inputText>
+		<h:outputText value="/" />
+		<h:inputText style="width:30px;" required="true"
+			value="#{dateObj.mes}">
+			<f:convertNumber type="number" />
+			<f:validateLength maximum="2" />
+			<f:validateLongRange minimum="1" maximum="12"/>
+		</h:inputText>
+		<h:outputText value="/" />
+		<h:inputText style="width:35px;" required="true"
+			value="#{dateObj.ano}">
+			<f:convertNumber type="number" />
+			<f:validateLength maximum="4" />
+			<f:validateLongRange minimum="1800" maximum="2099"/>
+		</h:inputText>
+		<h:messages showDetail="true" showSummary="false" />
+	</h:panelGrid>
+</ui:composition>
+
+</html>

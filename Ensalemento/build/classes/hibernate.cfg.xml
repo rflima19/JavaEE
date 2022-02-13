@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+
+		<property name="connection.url">
+			jdbc:mysql://localhost:3306/test_hibernate?useTimezone=true&amp;serverTimezone=UTC&amp;
+			<!-- jdbc:mysql://localhost:3306/test_hibernate?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC -->
+		</property>
+
+		<property name="connection.username">
+			root
+		</property>
+
+		<property name="connection.password">
+			wU430d71jK6S8n20v
+		</property>
+
+		<property name="dialect">
+			<!-- Na primeira tentativa de salvar os dados no banco MySql usando o 
+			dialeto org.hibernate.dialect.MySQLDialect foi gerado um erro de 
+			sitaxe SQL quando o hibernate tentou criar a tabela no banco.
+			Explicação: O que acontece é que você está usando o dialeto genérico 
+			“org.hibernate.dialect.MySQLDialect”. Devido a isso, o hibernate usa 
+			a keyword “TYPE”, que está depreciada nas versões 5 > do MySQL. Portanto, 
+			você precisa mudar o dialeto para “org.hibernate.MySQL57Dialect” ou algo 
+			assim. Isso deve forçar o hibernate a criar a tabela substituindo a keyword 
+			“TYPE” pela “ENGINE”, que é a utilizada nas versões 5 > do MySQL. -->
+			<!-- org.hibernate.dialect.MySQLDialect -->
+			<!-- org.hibernate.dialect.MySQL8Dialect -->
+			org.hibernate.dialect.MySQL57Dialect
+		</property>
+
+		<!-- Habilita o Hibernate a utilizar uma mesma session para todas as operações
+		com a base de dados por requisição do usuário -->
+		<property name="current_session_context_class">
+			thread
+		</property>
+
+		<!-- Informa ao Hibernate que deve ser criada as tabelas, cuidado: caso a 
+		tabela já existe, será apaga e criada uma nova -->
+		<!-- <property name="hibernate.hbm2ddl.auto">
+			create
+		</property> -->
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">
+			true
+		</property>
+		<property name="format_sql">
+			true
+		</property>
+		<property name="use_sql_comments">
+			true
+		</property>
+
+		<!-- Carregando os arquivos de mapeamento das entidades da aplicação -->
+		<mapping resource="model/entity/Aluno.hbm.xml" />
+		<mapping resource="model/entity/Sala.hbm.xml" />
+		<mapping resource="model/entity/Turma.hbm.xml" />
+	</session-factory>
+
+</hibernate-configuration>

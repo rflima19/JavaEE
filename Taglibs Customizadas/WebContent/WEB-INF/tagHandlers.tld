@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- tag handler para desejar boas vindas ao usuário -->
+
+<taglib>
+
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.3</jsp-version>
+	<short-name>tagHandlers</short-name>
+	<uri>tagsHandler</uri>
+	<tag>
+		<description>Cumprimenta usuários</description>
+		<name>welcome</name>
+		<tag-class>br.com.rafael.test.BemVindoTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>usuario</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

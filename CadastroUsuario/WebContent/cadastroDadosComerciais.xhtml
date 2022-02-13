@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Dados Comerciais</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<f:facet name="header">
+				<h:outputText value="Dados Comerciais"/>
+			</f:facet>
+			
+			<h:outputLabel for="nomeEmpresa" value="Nome da Empresa:"/>
+			<h:inputText id="nomeEmpresa" value="#{cadastro.pessoa.nomeEmpresa}" required="true">
+				<f:validateLength minimum="2"/>
+			</h:inputText>
+			<h:message for="nomeEmpresa"/>
+			
+			<h:outputLabel for="cargo" value="Cargo:"/>
+			<h:inputText id="cargo" value="#{cadastro.pessoa.cargo}" required="true" />
+			<h:message for="cargo"/>
+			
+			<h:outputLabel for="salario" value="Salario:"/>
+			<h:inputText id="salario" value="#{cadastro.pessoa.salario}" required="true">
+				<f:convertNumber type="number" locale="pt_BR" />
+			</h:inputText>
+			<h:message for="salario"/>
+			
+			<h:outputLabel for="rua" value="Rua:"/>
+			<h:inputText id="rua" value="#{cadastro.pessoa.enderecoComercial.rua}" required="true"/>
+			<h:message for="rua"/>
+			
+			<h:outputLabel for="numero" value="Número:"/>
+			<h:inputText id="numero" value="#{cadastro.pessoa.enderecoComercial.numero}" required="true"/>
+			<h:message for="numero"/>
+			
+			<h:outputLabel for="complemento" value="Complemento:"/>
+			<h:inputText id="complemento" value="#{cadastro.pessoa.enderecoComercial.complemento}" required="true"/>
+			<h:message for="complemento"/>
+
+			<h:outputLabel for="bairro" value="Bairro:"/>
+			<h:inputText id="bairro" value="#{cadastro.pessoa.enderecoComercial.bairro}" required="true"/>
+			<h:message for="bairro"/>
+				
+			<h:outputLabel for="cep" value="CEP:"/>
+			<h:inputText id="cep" value="#{cadastro.pessoa.enderecoComercial.cep}" required="true" validatorMessage="Digite um CEP válido">
+				<f:validateRegex pattern="\d{5}-\d{2}"/>
+			</h:inputText>
+			<h:message for="cep"/>
+			
+			<h:outputLabel for="cidade" value="Cidade:"/>
+			<h:inputText id="cidade" value="#{cadastro.pessoa.enderecoComercial.cidade}" required="true"/>
+			<h:message for="cidade"/>
+			
+			<h:outputLabel for="estado" value="Estado:"/>
+			<h:selectOneMenu id="estado" value="#{cadastro.pessoa.enderecoComercial.estado}" required="true">
+				<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+				<f:selectItems value="#{cadastro.estados}" var="e" itemLabel="#{e.sigla} - #{e.nome}" itemValue="#{e}" />
+			</h:selectOneMenu>
+			<h:message for="estado"/>
+			
+			<h:outputLabel for="telComercialDdd" value="Telefone Comercial:"/>
+			<h:panelGroup>
+				<h:inputText id="telComercialDdd" value="#{cadastro.pessoa.telefoneComercial.ddd}" validatorMessage="Digite um ddd válido" style="width:30px;">
+					<f:validateRegex pattern="\d{3}"></f:validateRegex>
+					<f:validateRequired/>
+				</h:inputText> &nbsp; &nbsp;
+				<h:inputText id="telComercialNumero" value="#{cadastro.pessoa.telefoneComercial.numero}" validatorMessage="Digite o telefone comercial válido">
+					<f:validateRegex pattern="\d{5}-\d{4}"></f:validateRegex>
+					<f:validateRequired/>
+				</h:inputText>
+				<h:selectOneRadio id="telTipo" value="#{cadastro.pessoa.telefoneComercial.tipo}" validatorMessage="Escolha o tipo do telefone">
+					<f:validateRequired/>
+					<f:selectItem itemLabel="FIXO" itemValue="FIXO"/>
+					<f:selectItem itemLabel="CELULAR" itemValue="CELULAR"/>
+				</h:selectOneRadio>
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:message for="telComercialDdd"/><br/>
+				<h:message for="telComercialNumero"/><br/>
+				<h:message for="telTipo"/>
+			</h:panelGroup>
+			
+			<f:facet name="footer">
+				<h:commandButton value="Anterior" action="dadosPessoais" immediate="true"/> &nbsp; &nbsp;
+				<h:commandButton value="Próximo" action="dadosAreasInteresse"/>
+			</f:facet>
+		</h:panelGrid>
+		<h:messages />
+	</h:form>
+</h:body>
+
+</html>

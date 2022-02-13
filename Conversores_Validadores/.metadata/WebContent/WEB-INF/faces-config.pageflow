@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15557657408210" configfile="/Conversores_Validadores/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="form.xhmtl" x="122" y="178" id="pf15557658993001" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15557658993002" path="/form.xhmtl"/>
+  <nodes xsi:type="pageflow:PFPage" name="result.xhtml" x="338" y="562" id="pf15557658993003" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15557658993002 pf15558056653814 pf15558506855670 pf15558506855671" path="/result.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="form2.xhmtl" x="122" y="562" id="pf15558056653815" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15558056653814" path="/form2.xhmtl"/>
+  <nodes xsi:type="pageflow:PFPage" name="form3.xhmtl" x="122" y="946" id="pf15558506855672" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15558506855670" path="/form3.xhmtl"/>
+  <nodes xsi:type="pageflow:PFPage" name="formPagamento.xhmtl" id="pf15558506855673" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15558506855671" path="/formPagamento.xhmtl"/>
+  <links id="pf15557658993002" target="pf15557658993003" source="pf15557658993001" outcome="result"/>
+  <links id="pf15558056653814" target="pf15557658993003" source="pf15558056653815" outcome="result"/>
+  <links id="pf15558506855670" target="pf15557658993003" source="pf15558506855672" outcome="result"/>
+  <links id="pf15558506855671" target="pf15557658993003" source="pf15558506855673" outcome="result"/>
+</pageflow:Pageflow>

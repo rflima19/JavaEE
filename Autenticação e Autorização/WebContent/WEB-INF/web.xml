@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Autenticação e Autorização</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<description></description>
+  	<servlet-name>Processar1</servlet-name>
+  	<servlet-class>br.com.rafael.test.ProcessarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Processar1</servlet-name>
+  	<url-pattern>/Processar1</url-pattern>
+  </servlet-mapping>
+  
+  <security-role>
+  	<role-name>admin</role-name>
+  </security-role>
+  
+   <security-role>
+  	<role-name>user</role-name>
+  </security-role>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>processarAdmin</web-resource-name>
+  		<url-pattern>/Processar1</url-pattern>
+  	</web-resource-collection>
+  	
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>processarAdminUser</web-resource-name>
+  		<url-pattern>/Processar2</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  		<role-name>user</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <!--  
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  </login-config>
+  -->
+   
+   
+   <login-config>
+   	<auth-method>FORM</auth-method>
+   	<form-login-config>
+   		<form-login-page>/login.jsp</form-login-page>
+   		<form-error-page>/error.jsp</form-error-page>
+   	</form-login-config>
+   </login-config>
+   
+   <!-- 
+   <security-constraint>
+   	<web-resource-collection>
+   		<web-resource-name>https</web-resource-name>
+   		<url-pattern>/login.jsp</url-pattern>
+   	</web-resource-collection>
+   	
+   	<user-data-constraint>
+   		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+   	</user-data-constraint>
+   	
+   </security-constraint>
+    -->
+  
+</web-app>

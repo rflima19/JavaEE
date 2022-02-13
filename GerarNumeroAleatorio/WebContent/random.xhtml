@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Random</title>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<h:panelGrid id="panel" columns="3">
+			<f:facet name="header">
+				<h:outputText value="Gerador de Números Aleatórios"/>
+			</f:facet>
+			
+			<h:outputLabel for="qtd" value="Quantidade de Números:"/>
+			<h:selectOneMenu id="qtd" value="#{gerador.sorteio.quantidade}" required="true"
+					validatorMessage="Selecione a quatidade de numeros desejados">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				<f:selectItem itemValue="1" itemLabel="1" />
+				<f:selectItem itemValue="2" itemLabel="2" />
+				<f:selectItem itemValue="3" itemLabel="3" />
+				<f:selectItem itemValue="4" itemLabel="4" />
+				<f:selectItem itemValue="5" itemLabel="5" />
+			</h:selectOneMenu>
+			<h:message for="qtd"></h:message>
+			
+			<h:outputLabel for="vlMinimo" value="Valor Mínimo:"/>
+			<h:inputText id="vlMinimo" value="#{gerador.sorteio.minimo}" required="true" validatorMessage="Digite um valor mínimo" converterMessage="Digite um inteiro válido"/>
+			<h:message for="vlMinimo"></h:message>
+			
+			<h:outputLabel for="vlMaximo" value="Valor Máximo:"/>
+			<h:inputText id="vlMaximo" value="#{gerador.sorteio.maximo}" required="true" validatorMessage="Digite um valor máximo" converterMessage="Digite um inteiro válido"/>
+			<h:message for="vlMaximo"></h:message>
+			
+			<h:inputHidden validator="#{gerador.sorteio.validarIntervalo}"/>
+			
+			<f:facet name="footer">
+				<h:commandButton value="Gerar" action="#{gerador.gerar}"/>
+			</f:facet>
+		</h:panelGrid>
+		
+		<h:panelGroup rendered="#{gerador.sorteio.resultado.size() > 0}">
+			<br/><br/>
+			<h:outputText value="Resultado:"/><br/>
+			<h:selectManyListbox>
+				<f:selectItems value="#{gerador.sorteio.resultado}"/>
+			</h:selectManyListbox>
+		</h:panelGroup>
+	</h:form>
+</h:body>
+
+</html>

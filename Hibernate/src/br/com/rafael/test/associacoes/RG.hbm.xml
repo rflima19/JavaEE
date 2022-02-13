@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="br.com.rafael.test.associacoes">
+	<class name="RG" table="rg">
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="foreign">
+				<!-- atributo cliente da classe RG que controla o ID da tabela, o
+				ID do registro do cliente na tabela cliente será o mesmo para o ID
+				do registro de RG do cliente na tabela rg -->
+				<param name="property">cliente</param>
+			</generator>
+		</id>
+
+		<property name="numero" type="java.lang.String" column="numero" not-null="true" />
+		
+		<property name="dataExpedicao" type="java.time.LocalDate" column="data_expedicao" not-null="true" />
+		
+		<!--	<one-to-one name="cliente" /> => atributo da classe RG que possui 
+		relacionamento One-to-One com Cliente 
+				<one-to-one constrained="true" /> => define que registro da tabela RG
+		compartilham o ID com o registro correspondente da tabela cliente 
+		 -->
+		<one-to-one name="cliente" constrained="true" />
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15574995592590" configfile="/CadastroUsuario/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="cadastroDadosPessoais.xhtml" id="pf15574997371632" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15574997371633" path="/cadastroDadosPessoais.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastroDadosComerciais" id="pf15574997371634" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15574997371633" path="/cadastroDadosComerciais.xhtml"/>
+  <links id="pf15574997371633" target="pf15574997371634" source="pf15574997371632" outcome="dadosCormeciais"/>
+</pageflow:Pageflow>

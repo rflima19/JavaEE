@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+		
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Teste Conversores</title>
+</h:head>
+
+<h:body>
+	
+	<h:messages>
+	</h:messages>
+	
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel for="numInteiro" value="Número Inteiro:"/>
+			<h:inputText id="numInteiro" value="#{form.numeroInteriro}">
+				<f:convertNumber type="number" locale="pt_BR"/>
+			</h:inputText>
+			<h:message for="numInteiro"/>
+			
+			<h:outputLabel for="numDecimal" value="Número Decimal:"/>
+			<h:inputText id="numDecimal" value="#{form.numeroDecimal}">
+				<f:convertNumber type="number" locale="pt_BR"/>
+			</h:inputText>
+			<h:message for="numDecimal" showDetail="false" showSummary="true"/>
+			
+			<h:outputLabel for="caracter" value="Caractere:"/>
+			<h:inputText id="caracter" value="#{form.caractere}"/>
+			<h:message for="caracter"/>
+			
+			<h:outputLabel for="data" value="Data (dd/mm/yyyy):"/>
+			<h:inputText id="data" value="#{form.data}" converterMessage="Data Invalida">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+			<h:message for="data"/>
+			
+			<h:outputLabel for="opcao" value="Opção (OP_1 / OP_2):"/>
+			<h:inputText id="opcao" value="#{form.opcao}"/>
+			<h:message for="opcao"/>
+			
+			<h:outputLabel for="endereco" value="Endereço:"/>
+			<h:inputText id="endereco" value="#{form.endereco}"/>
+			<h:message for="endereco"/>
+		</h:panelGrid>
+		<h:commandButton value="Processar" action="#{form.processar}"/>
+	</h:form>
+</h:body>
+
+</html>

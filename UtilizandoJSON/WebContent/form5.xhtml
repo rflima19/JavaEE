@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>JSON-B</title>
+</h:head>
+
+<h:body>
+	<h1>Cadastro</h1>
+
+	<h:form>
+		<h:messages />
+		<h:panelGrid columns="2">
+			Nome: <h:inputText value="#{form3.cadastro.nome}" />
+			Idade: <h:inputText value="#{form3.cadastro.idade}" />
+			Data de Nascimento:
+			<h:inputText value="#{form3.cadastro.dataNascimento}">
+				<f:convertDateTime pattern="dd/MM/yyyy" type="localDate" />
+			</h:inputText>
+			Casado: <h:selectBooleanCheckbox value="#{form3.cadastro.casado}" />
+			Rua: <h:inputText value="#{form3.cadastro.endereco.rua}" />
+			N�mero: <h:inputText value="#{form3.cadastro.endereco.numero}" />
+			Interesse:
+			<h:selectManyListbox value="#{form3.cadastro.interesses}">
+				<f:selectItem itemValue="Arte" />
+				<f:selectItem itemValue="Esportes" />
+				<f:selectItem itemValue="Cinema" />
+				<f:selectItem itemValue="Viagens" />
+			</h:selectManyListbox>
+		</h:panelGrid>
+
+		<h:commandButton value="Converter" action="#{form3.convertToJson}" />
+
+		<br />
+		<hr />
+		<br />
+
+		<h:inputTextarea value="#{form3.jsonStr}" cols="100" rows="10"
+			readonly="true" />
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="br.com.rafael.test">
+
+	<class name="Produto" table="produto">
+		
+		<id name="id" type="java.lang.Integer" column="id_produto">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="nome" type="java.lang.String" column="nome" not-null="false"></property>
+		
+		<property name="valor" type="java.lang.Double" column="preco" not-null="false"></property>
+		
+	</class>
+	
+</hibernate-mapping>

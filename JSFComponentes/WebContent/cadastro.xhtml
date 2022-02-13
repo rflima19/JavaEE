@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html">
+		
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cadastro de Usuário</title>
+
+<script>
+	function verificarSenhas() {
+		var senha1 = document.getElementById("f:s1").value;
+		var senha2 = document.getElementById("f:s2").value;
+		
+		if (senha1 == senha2) {
+			return true;
+		} else {
+			alert("Senhas diferentes!");
+			return false;
+		}
+	}
+</script>
+
+</h:head>
+
+<h:body>
+	
+	<h:form id="f">
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				Cadastro de Usuário
+			</f:facet>
+		
+			<h:outputLabel for="nome">Nome*:</h:outputLabel>
+			<h:inputText id="nome" label="Nome*" required="true" value="#{cadastro.nome}" requiredMessage="Campo nome obrigatório"></h:inputText>
+			
+			<h:outputLabel for="email">Email*:</h:outputLabel>
+			<h:inputText id="email" required="true" value="#{cadastro.email}" requiredMessage="Campo email obrigatório"></h:inputText>
+			
+			<h:outputLabel for="s1">Senha*:</h:outputLabel>
+			<h:inputSecret id="s1" value="#{cadastro.senha1}" required="true" requiredMessage="Campo senha obrigatório"></h:inputSecret>
+			
+			<h:outputLabel for="s2">Confirmação de Senha*:</h:outputLabel>
+			<h:inputSecret id="s2" value="#{cadastro.senha2}" required="true" requiredMessage="Campo confirmação de senha obrigatório"></h:inputSecret>
+			
+			<h:outputLabel>Sexo:</h:outputLabel>
+			<h:selectOneRadio value="#{cadastro.sexo}">
+				<f:selectItem itemValue="M" itemLabel="Masculino"></f:selectItem>
+				<f:selectItem itemValue="F" itemLabel="Feminino"></f:selectItem>
+			</h:selectOneRadio>
+			
+			<h:outputLabel for="dEmail">Deseja receber Email:</h:outputLabel>
+			<h:selectBooleanCheckbox id="dEmail" required="false" value="#{cadastro.receberEmails}"></h:selectBooleanCheckbox>
+			
+			<h:outputLabel>Observações:</h:outputLabel>
+			<h:inputTextarea value="#{cadastro.observacoes}" rows="4" cols="30"></h:inputTextarea>
+			
+			<h:outputLabel >Linguagens de Programação:</h:outputLabel>
+			<h:selectManyCheckbox value="#{cadastro.linguagens}">
+				<f:selectItems value="#{cadastro.listaLinguagens}" 
+					var="l" itemValue="#{l.id}" itemLabel="#{l.nome}"></f:selectItems>
+			</h:selectManyCheckbox>
+			
+			<f:facet name="footer">
+				<!-- <h:message for="nome"></h:message> -->
+				<h:messages></h:messages>
+			</f:facet>
+			
+		</h:panelGrid>
+		
+		<!-- <h:commandButton value="Cadastrar" action="#{cadastro.exibirCadastro()}"></h:commandButton> -->
+		
+		<h:commandButton value="Cadastrar" action="info" onclick="return verificarSenhas();"></h:commandButton>
+	</h:form>
+</h:body>
+
+</html>

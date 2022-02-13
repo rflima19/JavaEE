@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Gerador Aleatório</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet name="styles.css" library="css"></h:outputStylesheet>
+
+	<h:form>
+		<h:panelGrid columns="3">
+			<f:facet name="header">
+				<h:outputText value="Gerador de Números Aleatórios"></h:outputText>
+			</f:facet>
+			
+			<h:outputLabel for="qtd" value="Quantidade de Números:"></h:outputLabel>
+			<h:selectOneMenu id="qtd" value="#{gerador.quantidadeNumeros}">
+				<f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+				<f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+				<f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+				<f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+				<f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+			</h:selectOneMenu>
+			<h:message for="qtd" styleClass="erro" />
+			
+			<h:outputLabel for="minimo" value="Valor Mínimo:"></h:outputLabel>
+			<h:inputText id="minimo" value="#{gerador.intervaloMinino}" size="4" required="true" requiredMessage="Campo valor mínimo requerido"></h:inputText>
+			<h:message for="minimo" styleClass="erro" />
+			
+			<h:outputLabel for="maximo" value="Valor Máximo:"></h:outputLabel>
+			<h:inputText id="maximo" value="#{gerador.intervaloMaximo}" size="4" required="true" requiredMessage="Campo valor máximo requerido"></h:inputText>
+			<h:message id="erro" for="maximo" styleClass="erro" />
+		</h:panelGrid>
+		
+		<h:commandButton value="Gerar" action="#{gerador.gerarNumeroAleatorio()}"></h:commandButton>
+	</h:form>
+
+	<br/> <br/>
+
+	<div class="linha-horizontal"></div>
+	<!-- <hr size="1" width="300" align="left"></hr> -->
+	
+	<br/> <br/>
+	
+	<h:selectManyListbox rendered="#{gerador.exibirResultado}" readonly="true">
+		<f:selectItems value="#{gerador.listarValoresGerados}" var="l" itemLabel="#{l.toString()}"></f:selectItems>
+	</h:selectManyListbox>
+</h:body>
+</html>

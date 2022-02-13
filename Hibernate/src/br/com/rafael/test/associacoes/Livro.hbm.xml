@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="br.com.rafael.test.associacoes">
+	<class name="Livro" table="livro">
+		<id name="isbn" type="java.lang.String" column="isbn">
+			<!-- assigned = quem define o id é o progamador -->
+			<generator class="assigned" />
+		</id>
+
+		<property name="nome" type="java.lang.String" column="nome" not-null="true" />
+		<property name="autor" type="java.lang.String" column="autor" not-null="true" />
+		
+		<!-- 	<many-to-one name="editora" /> => atributo da classe Livro que 
+		possui relacionamento Many-to-One com Editora
+				<many-to-one column="editora_id" /> => qual a coluna na tabela livro
+		que referencia (chave estrangeira) a entidade Editora
+		-->
+		<many-to-one name="editora" column="editora_id" />
+		
+		<!-- 	name="clientes" => atributo da classe Livro que possui relacionamento 
+		Many-to-Many com Cliente
+				table="emprestimo" => tabela auxiliar no banco de dados que armazena
+		o relacionamento Many-to-Many entre Livro e Cliente
+				<key column="livro_id" /> => qual a coluna na tabela extra 
+		emprestimo que referencia (chave estrangeira) a entidade Livro
+				<many-to-many column="cliente_id" /> => qual a coluna na tabela extra 
+		emprestimo que referencia (chave estrangeira) a entidade Cliente
+				<many-to-many class="Cliente" /> => define o relacionamento Many-to-Many
+		da entidade que está sendo mapeada (Livro) com a entidade Cliente
+		-->
+		<set name="clientes" table="emprestimo">
+			<key column="livro_id" />
+			<many-to-many column="cliente_id" class="Cliente" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

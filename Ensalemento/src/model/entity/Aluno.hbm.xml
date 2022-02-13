@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.entity">
+
+	<class name="Aluno" table="aluno">
+	
+		<id name="matricula" type="java.lang.String" column="matricula">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="nome" type="java.lang.String" column="nome" not-null="true"></property>
+	
+		<many-to-one name="sala" column="sala_numero" class="Sala" not-null="false"></many-to-one>
+		
+	</class>
+
+</hibernate-mapping>

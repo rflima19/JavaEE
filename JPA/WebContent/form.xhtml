@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Tarefas</title>
+</h:head>
+
+<h:body>
+	
+	<h:form id="searchForm">
+		<h:panelGrid columns="4">
+			<h:outputLabel for="searchID" value="ID da tarefa"/>
+			<h:inputText id="searchID" value="#{form.tarefaID}" binding="#{form.searchInputText}" 
+					required="true" requiredMessage="Digite um ID" converterMessage="O ID não é válido" validatorMessage="O ID não é válido">
+				<f:validateLongRange minimum="1" maximum="1000" />
+			</h:inputText>
+			<h:commandButton value="Pesquisar">
+				<f:ajax event="action" listener="#{form.pesquisar}" execute=":searchForm:searchID" render=":editForm @form"/>
+			</h:commandButton>
+			<h:message for="searchID" style="color: red"/>
+		</h:panelGrid>
+	</h:form>
+	
+	<h:form id="editForm">
+		<h:panelGrid columns="3">
+			<h:outputLabel for="descricao" value="Descrição:"/>
+			<h:inputText id="descricao" value="#{form.tarefa.descricao}" required="true" requiredMessage="Digite uma descrição"/>
+			<h:message for="descricao" style="color: red;"/>
+			
+			<h:outputLabel for="prioridade" value="Prioridade:"/>
+			<h:selectOneMenu id="prioridade" value="#{form.tarefa.prioridade}">
+				<f:selectItem itemLabel="1" itemValue="1"/>
+				<f:selectItem itemLabel="2" itemValue="2"/>
+				<f:selectItem itemLabel="3" itemValue="3"/>
+			</h:selectOneMenu>
+			<h:message for="prioridade" style="color: red;"/>
+			
+			<h:outputLabel for="concluida" value="Concluída:"/>
+			<h:selectBooleanCheckbox value="#{form.tarefa.concluida}"/>
+		</h:panelGrid>
+		
+		<h:inputHidden value="#{form.tarefa.id}"/>
+		
+		<br/>
+		
+		<h:commandButton value="Gravar">
+			<f:ajax event="action" listener="#{form.gravar}" execute="@form" render="@form"/>
+		</h:commandButton>
+			
+		<h:commandButton value="Excluir" >
+			<f:ajax event="action" listener="#{form.excluir}" execute="@form" render="@form"/>
+		</h:commandButton>
+	</h:form>
+	
+</h:body>
+
+</html>

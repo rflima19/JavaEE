@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Dados Pessoais</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Dados Pessoais"></h:outputText>
+			</f:facet>
+
+			<h:outputLabel for="nome" value="Nome:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="nome" value="#{pessoa.nome}"
+					required="true" requiredMessage="Campo nome requerido"></h:inputText>
+				<h:message for="nome" />
+			</h:panelGroup>
+			
+			<h:outputLabel for="email" value="Email:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="email" value="#{pessoa.email}"
+					required="true" requiredMessage="Campo email requerido"></h:inputText>
+				<h:message for="email" />
+			</h:panelGroup>
+
+			<h:outputLabel for="data" value="Data:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="data" value="#{pessoa.dataNascimento}"
+					required="true" requiredMessage="Campo data requerido">
+					<f:convertDateTime type=“date” pattern=“dd/MM/yyyy” />
+				</h:inputText>
+				<h:message for="data" />
+			</h:panelGroup>
+
+			<h:outputLabel for="rua" value="Rua:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="rua" value="#{pessoa.enderecoResidencial.rua}"
+					required="true" requiredMessage="Campo rua requerido"></h:inputText>
+				<h:message for="rua" />
+			</h:panelGroup>
+
+			<h:outputLabel for="numero" value="Numero:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="numero" value="#{pessoa.enderecoResidencial.numero}"
+					required="true" requiredMessage="Campo numero requerido"></h:inputText>
+				<h:message for="numero" />
+			</h:panelGroup>
+			
+			<h:outputLabel for="complemento" value="Complemento:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="complemento" value="#{pessoa.enderecoResidencial.complemento}"
+					required="true" requiredMessage="Campo complemento requerido"></h:inputText>
+				<h:message for="complemento" />
+			</h:panelGroup>
+
+			<h:outputLabel for="bairro" value="Bairro:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="bairro" value="#{pessoa.enderecoResidencial.bairro}"
+					required="true" requiredMessage="Campo bairro requerido"></h:inputText>
+				<h:message for="bairro" />
+			</h:panelGroup>
+
+			<h:outputLabel for="cep" value="CEP:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="cep" value="#{pessoa.enderecoResidencial.cep}"
+					required="true" requiredMessage="Campo cep requerido"></h:inputText>
+				<h:message for="cep" />
+			</h:panelGroup>
+			
+			<h:outputLabel for="cidade" value="Cidade:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="cidade" value="#{pessoa.enderecoResidencial.cidade}"
+					required="true" requiredMessage="Campo cidade requerido"></h:inputText>
+				<h:message for="cidade" />
+			</h:panelGroup>
+			
+			<h:outputLabel for="estado" value="Estado:"></h:outputLabel>
+			<h:panelGroup>
+				<h:selectOneMenu id="estado" value="#{pessoa.enderecoResidencial.estado}">
+					<f:selectItems value="#{pessoa.enderecoResidencial.estado.listaEstados}"
+						var="e" itemValue="#{e}" itemLabel="#{e.sigla} - #{e.nome}"></f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="estado" />
+			</h:panelGroup>
+
+			<h:outputLabel for="telResidencialDdd" value="Telefone residencial:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="telResidencialDdd" value="#{pessoa.telefoneResidencial.ddd}" size="2" maxlength="2"
+					required="true" requiredMessage="Campo DDD do telefone residencial requerido"></h:inputText>
+				<h:inputText id="telResidencialNumero" value="#{pessoa.telefoneResidencial.numero}"
+					required="true" requiredMessage="Campo numero do telefone residencial requerido"></h:inputText>
+				<h:message for="telResidencialDdd" />
+				<h:message for="telResidencialNumero" />
+				<h:inputHidden value="#{pessoa.telefoneResidencial.tipo}">FIXO</h:inputHidden>
+			</h:panelGroup>
+
+			<h:outputLabel for="telCelularDdd" value="Telefone celular:"></h:outputLabel>
+			<h:panelGroup>
+				<h:inputText id="telCelularDdd" value="#{pessoa.telefoneCelular.ddd}" size="2" maxlength="2"
+					required="true" requiredMessage="Campo DDD do telefone celular requerido"></h:inputText>
+				<h:inputText id="telCelularNumero" value="#{pessoa.telefoneCelular.numero}"
+					required="true" requiredMessage="Campo numero do telefone celular requerido"></h:inputText>
+				<h:message for="telCelularDdd" />
+				<h:message for="telCelularNumero" />
+				<h:inputHidden value="#{pessoa.telefoneCelular.tipo}">CELULAR</h:inputHidden>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:commandButton value="Próximo"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

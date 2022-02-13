@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+    <navigation-rule>
+    	<from-view-id>/form.xhmtl</from-view-id>
+    	<navigation-case>
+    		<from-outcome>result</from-outcome>
+    		<to-view-id>/result.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+    	<from-view-id>/form2.xhmtl</from-view-id>
+    	<navigation-case>
+    		<from-outcome>result</from-outcome>
+    		<to-view-id>/result.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+    	<from-view-id>/form3.xhmtl</from-view-id>
+    	<navigation-case>
+    		<from-outcome>result</from-outcome>
+    		<to-view-id>/result.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+    	<from-view-id>/formPagamento.xhmtl</from-view-id>
+    	<navigation-case>
+    		<from-outcome>result</from-outcome>
+    		<to-view-id>/result.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <application>
+    	<!-- <message-bundle>br.com.rafael.test.myMessages</message-bundle> -->
+    	<message-bundle>br.com.rafael.exercicio1.myMessages2</message-bundle>
+    </application>
+
+</faces-config>

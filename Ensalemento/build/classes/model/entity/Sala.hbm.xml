@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="entity.Sala" table="sala">
+	
+		<id name="numero" type="java.lang.Integer" column="numero">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="capacidade" type="java.lang.Integer" column="capacidade" not-null="true"></property>
+	
+		<one-to-one name="turma" class="model.entity.Turma"></one-to-one>
+		
+		<set name="alunos" inverse="true">
+			<key column="sala_numero" />
+			<one-to-many class="model.entity.Aluno" ></one-to-many>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>

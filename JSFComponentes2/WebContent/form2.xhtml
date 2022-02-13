@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<head jsf:id="head">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Integração com HTML5</title>
+
+<link jsf:library="css" jsf:name="styles.css" rel="stylesheet"
+	type="text/css" />
+</head>
+
+<body>
+	<form jsf:id="form">
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" name="nome" class="label"
+					placeholder="coloque aqui o seu nome" jsf:value="#{form.nome}" /></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input name="email" placeholder="coloque aqui o seu email"
+					class="label" type="text" jsf:value="#{form.email}" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Enviar"
+					jsf:action="#{form.processar}" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>

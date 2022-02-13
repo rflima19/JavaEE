@@ -1,0 +1,3 @@
+debug = false
+name = Sistema JSP 1.0
+email = admin@sistema.com

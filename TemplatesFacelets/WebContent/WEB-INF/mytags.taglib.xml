@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<facelet-taglib version="2.3" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_3.xsd">
+
+	<namespace>http://mytags/app</namespace>
+	<tag>
+		<tag-name>foto</tag-name>
+		<source>myTags/foto.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>data</tag-name>
+		<source>myTags/data.xhtml</source>
+	</tag>
+
+</facelet-taglib>

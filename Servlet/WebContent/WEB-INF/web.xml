@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>boasVindas.html</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <description>Parametro de contexto da aplicação web acessivel por todos os Servlet</description>
+    <param-name>banco</param-name>
+    <param-value>oracle</param-value>
+  </context-param>
+  <context-param>
+    <description>Parametro de contexto da aplicação web acessivel por todos os Servlet</description>
+    <param-name>senha</param-name>
+    <param-value>12345678</param-value>
+  </context-param>
+  <servlet>
+    <description>Servlet configurado através do arquivo web.xml</description>
+    <servlet-name>Mensagem</servlet-name>
+    <servlet-class>br.com.rafael.test.enviamensagemsimples.MensagemServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Mensagem</servlet-name>
+    <url-pattern>/mensagem2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Servlet de inicialização automatica configurado através do arquivo web.xml</description>
+    <servlet-name>AutoInit1</servlet-name>
+    <servlet-class>br.com.rafael.test.inicializacaoautomatica.AutoInit1Servlet</servlet-class>
+    <init-param>
+      <description>Email do administrador do sistema</description>
+      <param-name>adminEmail</param-name>
+      <param-value>admin@sistema.com</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>Servlet de inicialização automatica configurado através do arquivo web.xml</description>
+    <servlet-name>AutoInit3</servlet-name>
+    <servlet-class>br.com.rafael.test.inicializacaoautomatica.AutoInit3Servlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>Servlet para ler parametros configurado através do arquivo web.xml</description>
+    <servlet-name>LendoParametos1</servlet-name>
+    <servlet-class>br.com.rafael.test.parametrosinicializacaoservlet.LendoParametros1</servlet-class>
+    <init-param>
+      <param-name>parametro1</param-name>
+      <param-value>primeiro valor</param-value>
+    </init-param>
+    <init-param>
+      <param-name>parametro2</param-name>
+      <param-value>segundo valor</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LendoParametos1</servlet-name>
+    <url-pattern>/lerParametros1</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <description>Filtro de teste</description>
+    <filter-name>filtroTest</filter-name>
+    <filter-class>br.com.rafael.test.filtros.FiltroTest</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>filtroTest</filter-name>
+    <url-pattern>/filtroTest</url-pattern>
+  </filter-mapping>
+  <filter>
+    <description>Filtro para autenticação de requisições de clientes</description>
+    <filter-name>filtroAutetica</filter-name>
+    <filter-class>br.com.rafael.test.filtros.FiltroAutenticacao</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>filtroAutetica</filter-name>
+    <servlet-name>servlet2</servlet-name>
+  </filter-mapping>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/erroJava.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+</web-app>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Lista de Compras</title>
+
+<style type="text/css">
+.tableLista {
+	width: 50%;
+	border-collapse: collapse; /* CSS2 */
+	background: #FFFFF0;
+}
+
+.tableLista td {
+	border: 1px solid black;
+}
+
+.tableLista th {
+	border: 1px solid black;
+	background: #F0FFF0;
+}
+
+.riscado {
+	text-decoration: line-through;
+}
+</style>
+
+</h:head>
+
+<h:body>
+	<h:form id="formAdicionar">
+		<h:panelGrid columns="3">
+			<h:outputLabel for="produto" value="Produto:" />
+			<h:inputText id="produto" value="#{compras.produto.nome}"
+				required="true" validatorMessage="Nome do produto invalido">
+				<f:ajax event="blur" execute="@this" render="erroP" />
+			</h:inputText>
+			<h:message id="erroP" for="produto" />
+
+			<h:outputLabel for="quantidade" value="Quantidade:" />
+			<h:inputText id="quantidade" value="#{compras.produto.quantidade}"
+				required="true" converterMessage="Quantidade invalida">
+				<f:ajax event="blur" execute="@this" render="erroQtd" />
+			</h:inputText>
+			<h:message id="erroQtd" for="quantidade" />
+
+			<h:commandButton value="Adicionar" action="#{compras.adicionar}">
+				<f:ajax event="action" execute="@form" render="formTable @form" />
+			</h:commandButton>
+		</h:panelGrid>
+	</h:form>
+	<h:form id="formTable">
+		<h:dataTable id="tableLista" value="#{compras.produtos}" var="p"
+			rendered="#{compras.produtos.size() > 0}" styleClass="tableLista">
+			<f:facet name="caption">
+				<h:outputText value="Lista de Compras" />
+			</f:facet>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<h:selectBooleanCheckbox value="#{p.comprado}">
+					<f:ajax event="valueChange" execute="@this" render="@form" />
+				</h:selectBooleanCheckbox>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Produto"/>
+				</f:facet>
+				<h:outputText value="#{p.nome}" styleClass="riscado" rendered="#{p.comprado}" />
+				<h:outputText value="#{p.nome}" rendered="#{!p.comprado}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Quantidade" />
+				</f:facet>
+				<h:outputText value="#{p.quantidade}" styleClass="riscado" rendered="#{p.comprado}" />
+				<h:outputText value="#{p.quantidade}" rendered="#{!p.comprado}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<center>
+					<h:commandButton value="Excluir" action="#{compras.excluir(p)}">
+						<f:ajax event="action" execute="@this" render="@form" />
+					</h:commandButton>
+				</center>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+
+</html>

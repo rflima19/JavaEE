@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastro</title>
+	<style type="text/css">
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:messages showDetail="true" showSummary="true" severity="info" closable="true" globalOnly="true" />
+		<p:panel id="painel" header="Cadastro de Transferência">
+			<p:tabView effect="fade" effectDuration="slow">
+				<p:tab title="Cliente">
+					<p:panelGrid columns="3">
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" value="#{cadastro.cliente.nome}"
+							required="true" requiredMessage="O nome deve ser preenchido" />
+						<p:message for="nome" display="text"/>
+
+						<p:outputLabel for="cpf" value="CPF:" />
+						<p:inputMask id="cpf" mask="999.999.999-99"
+							value="#{cadastro.cliente.cpf}" required="true"
+							requiredMessage="O cpf deve ser preenchido" />
+						<p:message for="cpf"></p:message>
+
+						<p:outputLabel for="dataNasc" value="Data de Nascimento:" />
+						<p:calendar id="dataNasc" value="#{cadastro.cliente.dataNasc}"
+							required="true"
+							requiredMessage="O data de nascimento deve ser preenchida" />
+						<p:message for="dataNasc"></p:message>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="Transferência">
+					<p:panelGrid columns="3">
+						<p:outputLabel for="banco" value="Banco:" />
+						<p:autoComplete id="banco" value="#{cadastro.transf.banco}" completeMethod="#{cadastro.listarBancos}"
+							required="true" requiredMessage="O banco deve ser preenchido" />
+						<p:message for="banco"></p:message>
+						
+						<p:outputLabel for="valor" value="Valor:" />
+						<h:panelGroup>
+							<p:inputText id="valor" value="#{cadastro.transf.valor}"
+								required="true" requiredMessage="O valor deve ser preenchido" />
+							<p:slider for="valor" style="width:200px;" minValue="0" maxValue="1000" step="50" />
+						</h:panelGroup>
+						<p:message for="valor"></p:message>
+						
+						<p:outputLabel for="repet" value="Repetições:" />
+						<p:spinner id="repet" value="#{cadastro.transf.repet}" min="0" max="5" suffix="x"
+							required="true" requiredMessage="O nome deve ser preenchido" />
+						<p:message for="nome"></p:message>
+					</p:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<ui:remove>
+				<p:commandButton ajax="false" />
+			</ui:remove>
+			<p:commandButton id="transButton" value="Cadastra" action="#{cadastro.cadastrar}" style="margin:10px;" update="form" icon="ui-icon-check"/>
+		</p:panel>
+		
+		<p:blockUI block="painel" trigger="transButton">
+			Carregando...
+		</p:blockUI>
+	</h:form>
+</h:body>
+
+</html>
